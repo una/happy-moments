@@ -2,6 +2,36 @@
   box-sizing: border-box;
 } //REMEMBER: use flexbox
 
-body {
+%font--title {
   font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}
+
+%font--copy {
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  font-weight: 100;
+}
+
+$white: #fff;
+$black: #222;
+$color--copy: $white;
+$color--copy--bg: $black;
+
+body {
 } // REMEMBER: import Google Font
+
+.title {
+  @extend %font--title;
+  font-size: 5em;
+}
+
+.moment--text {
+  @extend %font--copy;
+  background-color: $color--copy--bg;
+  color: $color--copy;
+  display: inline;
+  line-height: 1.5;
+  padding: .1em;
+  font-size: 1.5em;
+}
