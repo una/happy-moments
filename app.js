@@ -8,6 +8,9 @@ var json, count, date, moment;
 app.use(express.static(__dirname + '/', { extensions: ['html'] }));
 app.use(express.static(__dirname + 'public'));
 
+
+// API Requests
+
 request.get("https://www.kimonolabs.com/api/2mf3bjrq?apikey=txL7B070QkLk5HPTGs915wNTSQP7jqi6",
 function(err, response, body) {
   json = JSON.parse(body);
@@ -22,19 +25,6 @@ function(err, response, body) {
 app.get('/', function(req, res){
   res.send('./public/index.html');
 });
-
-// Ractive stuff
-
-// var Ractive = require('ractive');
-
-// var ractive = new Ractive({
-//     template: 'hello from {{who}}'
-// });
-
-// ractive.set('who', 'node');
-// console.log(ractive.toHTML());
-
-// API Request
 
 
 

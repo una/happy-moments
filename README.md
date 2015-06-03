@@ -5,9 +5,9 @@ One happy moment every day of 2015.
 
 ## Things I Used
 
-- [My Gulp Starter](http://github.com/una/gulp-starter-env) for a dev environment & perf optimizations
+- [My Gulp Starter](http://github.com/una/gulp-starter-env) for perf optimizations & a base to set up my server:
+- [Express.js](http://expressjs.com/) as a framework to run Node
 - [Kimono](https://www.kimonolabs.com/) to scrape site and build an API out of it
-- [Ractive](http://www.ractivejs.org/) for data binding & templating
 
 ## To Get Started Building on This:
 
