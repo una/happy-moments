@@ -6,6 +6,64 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+  <canvas id="gradient"></canvas>
+  <div id="mouseCoords"></div>
+
+  <script>
+    var canvas = document.getElementById('gradient');
+    var context = canvas.getContext('2d');
+    context.rect(0, 0, canvas.width, canvas.height);
+
+    //mouse coords
+    var mouseX = 0;
+    var mouseY = 0;
+
+    function getCanvasSize() {
+      return {
+        specifiedWidth : canvas.width,
+        specifiedHeight :canvas.height,
+        realWidth : canvas.offsetWidth,
+        realHeight : canvas.offsetHeight,
+        heightScale: canvas.height/canvas.offsetHeight,
+        widthScale: canvas.width/canvas.offsetWidth
+      }
+    }
+
+    var debug = {
+       mousePressed:document.getElementById("mousePressed"),
+       mouseCoords: document.getElementById("mouseCoords"),
+     }
+
+     debug.mouseCoords.innerHTML = "("+Math.floor(mouseX)+"/"+Math.floor(mouseY)+")";
+
+    canvas.addEventListener("mousemove",function(e){
+      var s = getCanvasSize();
+      var x = e.pageX - canvas.offsetLeft;
+      var y = e.pageY - canvas.offsetTop;
+      mouseX = x*s.widthScale;
+      mouseY = y*s.heightScale;
+
+      debug.mouseCoords.innerHTML = "("+Math.floor(mouseX)+"/"+Math.floor(mouseY)+")";
+
+      ctx.fillStyle = "rgb(200,0,0)";
+      ctx.fillRect (mouseX, mouseY, 1,1);
+
+    });
+
+    // starting colors
+    var bgc1 = '#8ED6FF';
+    var bgc2 = '#004CB3';
+
+    // horizontal grad
+    var grd = context.createLinearGradient(canvas.width, 0, canvas.width, canvas.height);
+
+    // add colors & fill
+    grd.addColorStop(0, bgc1);
+    grd.addColorStop(1, bgc2);
+    context.fillStyle = grd;
+    context.fill();
+  </script>
+
   <h1 class="title">One Happy Moment:</h1>
 
   <p class="moment--text">Today I played with an Arduino and made an LED light blink when I held down a button. It made me really happy :) and I understand circuits and resistors a lot better now.</p>

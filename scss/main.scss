@@ -2,6 +2,17 @@
   box-sizing: border-box;
 } //REMEMBER: use flexbox
 
+canvas {
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
 %font--title {
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
