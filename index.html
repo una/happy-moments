@@ -29,6 +29,36 @@
       }
     }
 
+    function LightenDarkenColor(col, amt) {
+
+        var usePound = false;
+
+        if (col[0] == "#") {
+            col = col.slice(1);
+            usePound = true;
+        }
+
+        var num = parseInt(col,16);
+
+        var r = (num >> 16) + amt;
+
+        if (r > 255) r = 255;
+        else if  (r < 0) r = 0;
+
+        var b = ((num >> 8) & 0x00FF) + amt;
+
+        if (b > 255) b = 255;
+        else if  (b < 0) b = 0;
+
+        var g = (num & 0x0000FF) + amt;
+
+        if (g > 255) g = 255;
+        else if (g < 0) g = 0;
+
+        return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+
+    }
+
     var debug = {
        mousePressed:document.getElementById("mousePressed"),
        mouseCoords: document.getElementById("mouseCoords"),
@@ -36,7 +66,7 @@
 
      debug.mouseCoords.innerHTML = "("+Math.floor(mouseX)+"/"+Math.floor(mouseY)+")";
 
-    canvas.addEventListener("mousemove",function(e){
+    window.addEventListener("mousemove",function(e){
       var s = getCanvasSize();
       var x = e.pageX - canvas.offsetLeft;
       var y = e.pageY - canvas.offsetTop;
@@ -44,21 +74,17 @@
       mouseY = y*s.heightScale;
 
       debug.mouseCoords.innerHTML = "("+Math.floor(mouseX)+"/"+Math.floor(mouseY)+")";
-
-      ctx.fillStyle = "rgb(200,0,0)";
-      ctx.fillRect (mouseX, mouseY, 1,1);
-
     });
 
-    // starting colors
+    // starting color
     var bgc1 = '#8ED6FF';
-    var bgc2 = '#004CB3';
+    var bgc2 = LightenDarkenColor(bgc1, -120);
 
     // horizontal grad
     var grd = context.createLinearGradient(canvas.width, 0, canvas.width, canvas.height);
 
     // add colors & fill
-    grd.addColorStop(0, bgc1);
+    grd.addColorStop(0, LightenDarkenColor(bgc1, mouseX));
     grd.addColorStop(1, bgc2);
     context.fillStyle = grd;
     context.fill();
