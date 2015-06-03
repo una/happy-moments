@@ -16,7 +16,9 @@ var gulp        = require('gulp'),
     imagemin    = require('gulp-imagemin'),
     pngquant    = require('imagemin-pngquant'),
     plumber     = require('gulp-plumber'),
-    notify      = require('gulp-notify');
+    notify      = require('gulp-notify'),
+    gulpLoadPlugins = require("gulp-load-plugins"),
+    plugins     = gulpLoadPlugins();
 
 gulp.task('scss', function() {
   var onError = function(err) {
@@ -44,10 +46,12 @@ gulp.task('scss', function() {
 });
 
 gulp.task('nodemon', function (cb) {
-  return nodemon({
-    script: 'app.js'
-  }).on('start', function () {
+  var called = false;
+  return plugins.nodemon({script: 'app.js'}).on('start', function () {
+    if (!called) {
+      called = true;
       cb();
+    }
   });
 });
 
@@ -107,4 +111,4 @@ gulp.task('imgmin', function () {
       .pipe(gulp.dest('public/img'));
 });
 
-gulp.task('default', ['browser-sync', 'js', 'imgmin', 'minify-html', 'scss', 'watch']);
+gulp.task('default', ['js', 'imgmin', 'minify-html', 'scss', 'watch']);
