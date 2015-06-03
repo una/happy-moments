@@ -11,7 +11,6 @@
   "repository": "https://github.com/una/happy-moments/",
   "dependencies": {
     "express": "^4.12.3",
-    "ractive": "^0.7.3"
   },
   "devDependencies": {
     "browser-sync": "^2.0.0-rc4",
@@ -32,6 +31,6 @@
     "gulp-size": "^1.2.0",
     "gulp-uglify": "^1.0.2",
     "imagemin-pngquant": "^4.0.0",
-    "request": "^2.57.0"
+    "request": "^2.57.0",
   }
 }

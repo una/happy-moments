@@ -19,12 +19,8 @@ function(err, response, body) {
   date = json.results.happyMoments[n].date.text;
   moment = json.results.happyMoments[n].moment;
   console.log(n, count, date, moment);
-
 });
 
 app.get('/', function(req, res){
   res.send('./public/index.html');
 });
-
-
-
