@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box; }
 
-.title {
+.title, .moment--date {
   font-family: 'Roboto', sans-serif;
   font-weight: 100; }
 
@@ -20,3 +20,8 @@
   line-height: 1.5;
   padding: .1em;
   font-size: 1.5em; }
+.moment--date {
+  font-size: 5em; }
+
+.sidebar--info {
+  display: none; }

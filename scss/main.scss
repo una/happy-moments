@@ -26,12 +26,23 @@ body {
   font-size: 5em;
 }
 
-.moment--text {
-  @extend %font--copy;
-  background-color: $color--copy--bg;
-  color: $color--copy;
-  display: inline;
-  line-height: 1.5;
-  padding: .1em;
-  font-size: 1.5em;
+.moment {
+  &--text {
+    @extend %font--copy;
+    background-color: $color--copy--bg;
+    color: $color--copy;
+    display: inline;
+    line-height: 1.5;
+    padding: .1em;
+    font-size: 1.5em;
+  }
+
+  &--date {
+    @extend %font--title;
+    font-size: 5em;
+  }
+}
+
+.sidebar--info {
+  display: none;
 }
