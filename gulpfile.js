@@ -111,4 +111,4 @@ gulp.task('imgmin', function () {
       .pipe(gulp.dest('public/img'));
 });
 
-gulp.task('default', ['js', 'imgmin', 'minify-html', 'scss', 'watch']);
+gulp.task('default', ['browser-sync', 'js', 'imgmin', 'minify-html', 'scss', 'watch']);
