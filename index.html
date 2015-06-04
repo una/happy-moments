@@ -2,94 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title Here</title>
+  <title>One Happy Moment</title>
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <canvas id="gradient"></canvas>
-  <div id="mouseCoords"></div>
-
-  <script>
-    var canvas = document.getElementById('gradient');
-    var context = canvas.getContext('2d');
-    context.rect(0, 0, canvas.width, canvas.height);
-
-    //mouse coords
-    var mouseX = 0;
-    var mouseY = 0;
-
-    function getCanvasSize() {
-      return {
-        specifiedWidth : canvas.width,
-        specifiedHeight :canvas.height,
-        realWidth : canvas.offsetWidth,
-        realHeight : canvas.offsetHeight,
-        heightScale: canvas.height/canvas.offsetHeight,
-        widthScale: canvas.width/canvas.offsetWidth
-      }
-    }
-
-    function LightenDarkenColor(col, amt) {
-
-        var usePound = false;
-
-        if (col[0] == "#") {
-            col = col.slice(1);
-            usePound = true;
-        }
-
-        var num = parseInt(col,16);
-
-        var r = (num >> 16) + amt;
-
-        if (r > 255) r = 255;
-        else if  (r < 0) r = 0;
-
-        var b = ((num >> 8) & 0x00FF) + amt;
-
-        if (b > 255) b = 255;
-        else if  (b < 0) b = 0;
-
-        var g = (num & 0x0000FF) + amt;
-
-        if (g > 255) g = 255;
-        else if (g < 0) g = 0;
-
-        return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
-
-    }
-
-    var debug = {
-       mousePressed:document.getElementById("mousePressed"),
-       mouseCoords: document.getElementById("mouseCoords"),
-     }
-
-     debug.mouseCoords.innerHTML = "("+Math.floor(mouseX)+"/"+Math.floor(mouseY)+")";
-
-    window.addEventListener("mousemove",function(e){
-      var s = getCanvasSize();
-      var x = e.pageX - canvas.offsetLeft;
-      var y = e.pageY - canvas.offsetTop;
-      mouseX = x*s.widthScale;
-      mouseY = y*s.heightScale;
-
-      debug.mouseCoords.innerHTML = "("+Math.floor(mouseX)+"/"+Math.floor(mouseY)+")";
-    });
-
-    // starting color
-    var bgc1 = '#8ED6FF';
-    var bgc2 = LightenDarkenColor(bgc1, -120);
-
-    // horizontal grad
-    var grd = context.createLinearGradient(canvas.width, 0, canvas.width, canvas.height);
-
-    // add colors & fill
-    grd.addColorStop(0, LightenDarkenColor(bgc1, mouseX));
-    grd.addColorStop(1, bgc2);
-    context.fillStyle = grd;
-    context.fill();
-  </script>
-
   <h1 class="title">One Happy Moment:</h1>
 
   <p class="moment--text">seeking joy...</p>
