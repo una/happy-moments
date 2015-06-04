@@ -13,25 +13,75 @@ canvas {
 
 .title, .moment--date {
   font-family: 'Roboto', sans-serif;
-  font-weight: 100; }
+  font-weight: 100;
+  font-size: 8em; }
 
 .moment--text {
   font-family: 'Roboto', sans-serif;
   font-style: italic;
   font-weight: 100; }
 
-.title {
-  font-size: 5em; }
+body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 2em;
+  max-width: 1000px;
+  margin: 0 auto; }
 
+.title {
+  -webkit-align-self: flex-start;
+      -ms-flex-item-align: start;
+          align-self: flex-start;
+  margin: 0; }
+
+.moment--container {
+  -webkit-align-self: flex-start;
+      -ms-flex-item-align: start;
+          align-self: flex-start;
+  max-width: 760px;
+  margin-top: 3em; }
 .moment--text {
   background-color: #222;
   color: #fff;
   display: inline;
-  line-height: 1.5;
+  line-height: 1.6;
   padding: .1em;
-  font-size: 1.5em; }
+  font-size: 1.6em; }
 .moment--date {
-  font-size: 5em; }
+  display: inline-block;
+  text-align: center;
+  width: 4em;
+  margin: 0; }
 
 .sidebar--info {
   display: none; }
+
+.date--rand, .date--next, .date--prev {
+  display: inline-block;
+  background: url('../img/icons.svg');
+  background-size: cover;
+  border: none;
+  width: 4em;
+  height: 7em; }
+  .date--rand:hover, .date--next:hover, .date--prev:hover {
+    cursor: pointer; }
+
+.date--container {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0; }
+.date--rand {
+  background-position: -10px;
+  width: 8.43em; }
+.date--next {
+  background-position: 4.5em 0; }
+.date--prev {
+  background-position: 10em 0; }
