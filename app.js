@@ -8,8 +8,6 @@ var json, count, date, moment;
 app.use(express.static(__dirname + '/', { extensions: ['html'] }));
 app.use(express.static(__dirname + '/public'));
 
-
-// API Request
 app.get('/', function(req, res){
   res.send('./public/index.html');
 });
@@ -22,4 +20,8 @@ app.get('/json-list', function(req, res){
   });
 });
 
-app.listen(3000);
+var host = (process.env.VCAP_APP_HOST || 'localhost');
+var port = (process.env.VCAP_APP_PORT || 3000);
+
+app.listen(port, host);
+console.log('App started on port: ' + port);
