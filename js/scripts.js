@@ -3,22 +3,54 @@ request.open('GET', '/json-list', true);
 
 request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
-    // Success!
     var data = JSON.parse(request.responseText);
-    console.log(data);
+    // console.log('data inside onload:', data);
+    useList(data);
   } else {
-    // We reached our target server, but it returned an error
-
+    console.log('we can\'t find the happy moments :(');
   }
 };
 
 request.onerror = function() {
-  // There was a connection error of some sort
+  console.log('connection error');
 };
 
 request.send();
 
-console.log('hi');
+function useList(data){
+  console.log('useList:', data);
+  var count, date, moment;
+
+  count = data.count;
+  var n = Math.floor(Math.random()*count);
+  date = data.results.happyMoments[n].date.text;
+  moment = data.results.happyMoments[n].moment;
+  console.log(n, count, date, moment);
+
+  document.querySelector('.moment--text').innerHTML = moment;
+  document.querySelector('.moment--date').innerHTML = formatDate(date);
+};
+
+// Date Formatting
+function formatDate(d) {
+  var months = {
+    '01' : 'Jan',
+    '02' : 'Feb',
+    '03' : 'Mar',
+    '04' : 'Apr',
+    '05' : 'May',
+    '06' : 'June',
+    '07' : 'July',
+    '08' : 'Aug',
+    '09' : 'Sept',
+    '10' : 'Oct',
+    '11' : 'Nov',
+    '12' : 'Dec'};
+  var monthNum = d.slice(0,2);
+  var dateNum = d.slice(3,5);
+
+  return (months[monthNum] + ' ' + dateNum);
+}
 
 // Google Fonts
 WebFontConfig = {
