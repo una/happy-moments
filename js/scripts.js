@@ -1,11 +1,13 @@
 var request = new XMLHttpRequest();
 request.open('GET', '/json-list', true);
+var data;
 
 request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
-    var data = JSON.parse(request.responseText);
-    // console.log('data inside onload:', data);
-    useList(data);
+    data = JSON.parse(request.responseText);
+    randomMoment(data);
+    console.log('reload');
+
   } else {
     console.log('we can\'t find the happy moments :(');
   }
@@ -17,19 +19,23 @@ request.onerror = function() {
 
 request.send();
 
-function useList(data){
-  console.log('useList:', data);
+// using list from API call
+function randomMoment(moments){
   var count, date, moment;
 
-  count = data.count;
+  count = moments.count;
   var n = Math.floor(Math.random()*count);
-  date = data.results.happyMoments[n].date.text;
-  moment = data.results.happyMoments[n].moment;
-  console.log(n, count, date, moment);
+  date = moments.results.happyMoments[n].date.text;
+  moment = moments.results.happyMoments[n].moment;
 
   document.querySelector('.moment--text').innerHTML = moment;
   document.querySelector('.moment--date').innerHTML = formatDate(date);
-};
+
+  // functions
+  document.querySelector('.date--rand').addEventListener("click", function(e) {
+      randomMoment(data);
+    });
+}
 
 // Date Formatting
 function formatDate(d) {
