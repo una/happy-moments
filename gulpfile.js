@@ -45,26 +45,21 @@ gulp.task('scss', function() {
     .pipe(gulp.dest('public/css'));
 });
 
-gulp.task('nodemon', function (cb) {
-  var called = false;
-  return plugins.nodemon({script: 'app.js'}).on('start', function () {
-    if (!called) {
-      called = true;
-      cb();
-    }
+gulp.task('browser-sync', ['nodemon'], function() {
+  browserSync.init(null, {
+    proxy: "http://localhost:3000",
+    files: ["public/**/*.*"],
+    browser: "google chrome",
+    port: 5000,
   });
 });
 
-gulp.task('browser-sync', ['nodemon'], function() {
-  browserSync.init(null, {
-    server: {
-        baseDir: 'public/'
-    },
-
-    // proxy: 'http://localhost:5000',
-    files: ['public/**/*.*'],
-    port: 5000
-    });
+gulp.task('nodemon', function (cb) {
+  return nodemon({
+    script: 'app.js'
+  }).on('start', function () {
+      cb();
+  });
 });
 
 gulp.task('js', function() {
