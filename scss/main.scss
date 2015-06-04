@@ -49,6 +49,7 @@ body {
     align-self: flex-start;
     max-width: 760px;
     margin-top: 3em;
+    height: 12em;
   }
 
   &--text {
@@ -70,8 +71,22 @@ body {
   }
 }
 
-.sidebar--info {
-  display: none;
+.sidebar {
+  background: $black;
+  display: block;
+  width: 2em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+
+  &--icon {
+
+  }
+
+  &--info {
+    display: none;
+  }
 }
 
 %change-icons {
@@ -89,10 +104,8 @@ body {
 
 .date {
   &--container {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    align-self: flex-end;
+    text-align: right;
   }
 
   &--rand {

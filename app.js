@@ -15,7 +15,6 @@ app.get('/', function(req, res){
 });
 
 app.get('/json-list', function(req, res){
-  console.log('hi');
   request.get("https://www.kimonolabs.com/api/2mf3bjrq?apikey=txL7B070QkLk5HPTGs915wNTSQP7jqi6",
   function(err, response, body) {
     json = JSON.parse(body);

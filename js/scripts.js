@@ -5,8 +5,7 @@ var data;
 request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
     data = JSON.parse(request.responseText);
-    randomMoment(data);
-    console.log('reload');
+    momentsFunction(data);
 
   } else {
     console.log('we can\'t find the happy moments :(');
@@ -20,20 +19,45 @@ request.onerror = function() {
 request.send();
 
 // using list from API call
-function randomMoment(moments){
-  var count, date, moment;
+function momentsFunction(data) {
+  var allMoments, count, date, moment, i;
+  allMoments = data;
+  count = allMoments.count;
 
-  count = moments.count;
-  var n = Math.floor(Math.random()*count);
-  date = moments.results.happyMoments[n].date.text;
-  moment = moments.results.happyMoments[n].moment;
+  console.log(allMoments);
 
-  document.querySelector('.moment--text').innerHTML = moment;
-  document.querySelector('.moment--date').innerHTML = formatDate(date);
+  function randomMoment() {
+    i = Math.floor(Math.random()*count);
+    updateMoments(i);
+  };
 
-  // functions
+  function nextMoment() {
+    i++;
+    updateMoments(i);
+  }
+
+  function prevMoment() {
+    i--;
+    updateMoments(i);
+  }
+
+  function updateMoments(i) {
+    date = allMoments.results.happyMoments[i].date.text;
+    moment = allMoments.results.happyMoments[i].moment;
+    document.querySelector('.moment--text').innerHTML = moment;
+    document.querySelector('.moment--date').innerHTML = formatDate(date);
+  }
+
+  randomMoment();
+
   document.querySelector('.date--rand').addEventListener("click", function(e) {
-      randomMoment(data);
+      randomMoment();
+    });
+  document.querySelector('.date--next').addEventListener("click", function(e) {
+      nextMoment();
+    });
+  document.querySelector('.date--prev').addEventListener("click", function(e) {
+      prevMoment();
     });
 }
 
@@ -106,7 +130,7 @@ function getCanvasSize() {
     realHeight : canvas.offsetHeight,
     heightScale: canvas.height/canvas.offsetHeight,
     widthScale: canvas.width/canvas.offsetWidth
-  }
+  };
 }
 
 window.addEventListener("mousemove",function(e){
@@ -117,8 +141,6 @@ window.addEventListener("mousemove",function(e){
   mouseY = y*s.heightScale;
   bgc1 = 'rgb('+Math.floor(mouseY*2 + 60)+','+ Math.floor(mouseX/2 + 40) + ',' + Math.floor(mouseY*5 + 160) + ')';
   bgc2 = 'rgb('+Math.floor(mouseX)+',214,255)';
-
-  // document.getElementById("mouseCoords").innerHTML = Math.floor(mouseX)+"/"+Math.floor(mouseY)+", bgc1: " + bgc1+", bgc2: " + bgc2;
 
   buildGrad();
 

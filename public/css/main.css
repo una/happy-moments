@@ -46,7 +46,8 @@ body {
       -ms-flex-item-align: start;
           align-self: flex-start;
   max-width: 760px;
-  margin-top: 3em; }
+  margin-top: 3em;
+  height: 12em; }
 .moment--text {
   background-color: #222;
   color: #fff;
@@ -60,8 +61,16 @@ body {
   width: 4em;
   margin: 0; }
 
-.sidebar--info {
-  display: none; }
+.sidebar {
+  background: #222;
+  display: block;
+  width: 2em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%; }
+  .sidebar--info {
+    display: none; }
 
 .date--rand, .date--next, .date--prev {
   display: inline-block;
@@ -74,10 +83,10 @@ body {
     cursor: pointer; }
 
 .date--container {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  right: 0; }
+  -webkit-align-self: flex-end;
+      -ms-flex-item-align: end;
+          align-self: flex-end;
+  text-align: right; }
 .date--rand {
   background-position: -10px;
   width: 8.43em; }
