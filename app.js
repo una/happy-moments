@@ -22,12 +22,8 @@ app.get('/json-list', function(req, res){
   });
 });
 
-<<<<<<< HEAD
 var host = (process.env.HOST || 'localhost');
 var port = (process.env.PORT || 3000);
 
 app.listen(port, host);
 console.log('App started on port: ' + port);
-=======
-app.listen(3000);
->>>>>>> parent of d253fc3... updated listen
