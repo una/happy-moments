@@ -54,11 +54,11 @@ gulp.task('browser-sync', ['nodemon'], function() {
   });
 });
 
-gulp.task('nodemon', function (cb) {
+gulp.task('nodemon', function () {
   return nodemon({
     script: 'app.js'
   }).on('start', function () {
-      cb();
+      // cb();
   });
 });
 

@@ -29,7 +29,7 @@ function momentsFunction(data) {
   function randomMoment() {
     i = Math.floor(Math.random()*count);
     updateMoments(i);
-  };
+  }
 
   function nextMoment() {
     i++;
@@ -46,6 +46,7 @@ function momentsFunction(data) {
     moment = allMoments.results.happyMoments[i].moment;
     document.querySelector('.moment--text').innerHTML = moment;
     document.querySelector('.moment--date').innerHTML = formatDate(date);
+    history.pushState(null, null, formatDate(date).replace(' ', '-'));
   }
 
   randomMoment();
