@@ -1,10 +1,20 @@
 var request = new XMLHttpRequest();
 request.open('GET', '/json-list', true);
-var data;
+
+// if this is a link to a moment, load that first
+window.onload = function() {
+  console.log(window.location.href);
+
+  if (window.location.href.includes('#')) {
+    console.log(getHashNum(window.location.href));
+    updateMoments(getHashNum(window.location.href));
+    return;
+  }
+};
 
 request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
-    data = JSON.parse(request.responseText);
+    var data = JSON.parse(request.responseText);
     momentsFunction(data);
 
   } else {
@@ -18,13 +28,23 @@ request.onerror = function() {
 
 request.send();
 
+function getHashNum(hash) {
+    return hash.split('#')[1];
+}
+
 // using list from API call
 function momentsFunction(data) {
   var allMoments, count, date, moment, i;
   allMoments = data;
   count = allMoments.count;
 
-  console.log(allMoments);
+  if (window.location.href.includes('#')) {
+    console.log(getHashNum(window.location.href));
+    i = getHashNum(window.location.href);
+    updateMoments(i);
+  } else {
+    randomMoment();
+  }
 
   function randomMoment() {
     i = Math.floor(Math.random()*count);
@@ -46,10 +66,8 @@ function momentsFunction(data) {
     moment = allMoments.results.happyMoments[i].moment;
     document.querySelector('.moment--text').innerHTML = moment;
     document.querySelector('.moment--date').innerHTML = formatDate(date);
-    history.pushState(null, null, formatDate(date).replace(' ', '-'));
+    history.pushState(null, null, '#' + i);
   }
-
-  randomMoment();
 
   document.querySelector('.date--rand').addEventListener("click", function(e) {
       randomMoment();
