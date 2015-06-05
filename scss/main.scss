@@ -71,24 +71,6 @@ body {
   }
 }
 
-.sidebar {
-  background: $black;
-  display: block;
-  width: 2em;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-
-  &--icon {
-
-  }
-
-  &--info {
-    display: none;
-  }
-}
-
 %change-icons {
   display: inline-block;
   background: url('../img/icons.svg');
@@ -122,5 +104,48 @@ body {
   &--prev {
     background-position: 10em 0;
     @extend %change-icons;
+  }
+}
+
+.sidebar {
+  background: $black;
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: -100%;
+  top: 0;
+  height: 100%;
+  color: $white;
+  margin-left: 3em;
+  transition-duration: .25s;
+
+  &:hover {
+    margin-left: 3.5em;
+    top: 0
+  }
+
+  &[data-state='open'] {
+    left: 0;
+    margin-left: 0;
+  }
+
+  &--icon {
+    @extend %font--title;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    color: inherit;
+    font-size: 1.5em;
+    margin: .25em;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+  }
+
+  &--info {
+    display: none;
+
   }
 }

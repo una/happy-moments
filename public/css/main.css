@@ -11,7 +11,7 @@ canvas {
   width: 100%;
   z-index: -1; }
 
-.title, .moment--date {
+.title, .moment--date, .sidebar--icon {
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
   font-size: 8em; }
@@ -61,17 +61,6 @@ body {
   width: 4em;
   margin: 0; }
 
-.sidebar {
-  background: #222;
-  display: block;
-  width: 2em;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%; }
-  .sidebar--info {
-    display: none; }
-
 .date--rand, .date--next, .date--prev {
   display: inline-block;
   background: url('../img/icons.svg');
@@ -94,3 +83,36 @@ body {
   background-position: 4.5em 0; }
 .date--prev {
   background-position: 10em 0; }
+
+.sidebar {
+  background: #222;
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: -100%;
+  top: 0;
+  height: 100%;
+  color: #fff;
+  margin-left: 3em;
+  -webkit-transition-duration: .25s;
+          transition-duration: .25s; }
+  .sidebar:hover {
+    margin-left: 3.5em;
+    top: 0; }
+  .sidebar[data-state='open'] {
+    left: 0;
+    margin-left: 0; }
+  .sidebar--icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    color: inherit;
+    font-size: 1.5em;
+    margin: .25em;
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid currentColor;
+    border-radius: 50%; }
+  .sidebar--info {
+    display: none; }
