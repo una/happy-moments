@@ -28,13 +28,14 @@ body {
 
 .date--container {
   float: right;
+  align-self: flex-end;
 }
 
 .moment--container {
   align-self: flex-start;
   max-width: grid-me(large);
-  margin-top: 3em;
-  height: 12em;
+  margin-top: 2em;
+  height: 14em;
 }
 
 .main-area {

@@ -27,10 +27,14 @@
   font-weight: 100;
 
   @include larger-than(small) {
-    font-size: 1.2em;
+    font-size: 1.15em;
   }
 
   @include larger-than(med) {
+    font-size: 1.4em;
+  }
+
+  @include larger-than(large) {
     font-size: 1.6em;
   }
 }
@@ -59,7 +63,7 @@
     @extend %font--title;
     display: inline-block;
     text-align: center;
-    width: 3.6em;
+    width: 3.5em;
     margin: 0;
   }
 }

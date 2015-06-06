@@ -22,7 +22,8 @@
     top: 0;
 
     .sidebar--icon {
-      color: $white;
+      color: $color--secondary;
+      opacity: 1;
     }
 
     @include larger-than(small) {
@@ -42,7 +43,7 @@
     // height: 2em;
     // margin: .25em;
     position: absolute;
-    opacity: .75;
+    opacity: .8;
     right: 0;
     top: 0;
     transition-duration: .5s;
@@ -72,8 +73,14 @@
     }
 
     a {
+      transition-duration: .5s;
       text-decoration: none;
       color: $color--accent;
+
+      &:hover {
+        color: $color--secondary;
+        opacity: .8;
+      }
     }
   }
 }
