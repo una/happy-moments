@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+canvas {
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 2em;
+}
+
+.date--container {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.moment--container {
+  align-self: flex-start;
+  max-width: grid-me(large);
+  margin-top: 3em;
+  height: 12em;
+}
+
+.main-area {
+  margin-left: 2em;
+
+  @include larger-than(small) {
+    margin-left: 3em;
+  }
+}

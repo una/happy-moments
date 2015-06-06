@@ -1,0 +1,54 @@
+%font--title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 3em;
+
+  @include larger-than(small) {
+    font-size: 4em;
+  }
+  @include larger-than(med) {
+    font-size: 6em;
+  }
+  @include larger-than(large) {
+    font-size: 8em;
+  }
+}
+
+%font--copy {
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  font-weight: 100;
+  font-size: 1em;
+
+  @include larger-than(small) {
+    font-size: 1.2em;
+  }
+  @include larger-than(med) {
+    font-size: 1.6em;
+  }
+}
+
+.title {
+  @extend %font--title;
+  align-self: flex-start;
+  margin: 0;
+}
+
+.moment {
+  &--text {
+    @extend %font--copy;
+    background-color: $color--copy--bg;
+    color: $color--copy;
+    display: inline;
+    line-height: 1.6;
+    padding: .1em;
+  }
+
+  &--date {
+    @extend %font--title;
+    display: inline-block;
+    text-align: center;
+    width: 4em;
+    margin: 0;
+  }
+}

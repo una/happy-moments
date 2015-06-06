@@ -1,0 +1,25 @@
+// grid
+$breakpoints: (
+  small: 26rem,
+  med: 38rem,
+  large: 47.5rem,
+  xl: 60rem
+);
+
+@function grid-me($point-name){
+  @return map-get($breakpoints, $point-name);
+}
+
+@mixin larger-than($point-name) {
+  $width: grid-me($point-name);
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+// colors
+$white: #fff;
+$black: #222;
+$color--copy: $white;
+$color--copy--bg: $black;
+$color--accent: #caf;

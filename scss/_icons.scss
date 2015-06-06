@@ -1,0 +1,30 @@
+%change-icons {
+  display: inline-block;
+  background: url('../img/icons.svg');
+  background-size: cover;
+  border: none;
+  width: 4em;
+  height: 7em;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.date {
+  &--rand {
+    @extend %change-icons;
+    background-position: -10px;
+    width: 8.43em;
+  }
+
+  &--next {
+    background-position: 4.5em 0;
+    @extend %change-icons;
+  }
+
+  &--prev {
+    background-position: 10em 0;
+    @extend %change-icons;
+  }
+}
