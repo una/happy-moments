@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box; }
 
+button:focus {
+  outline: none; }
+
 canvas {
   display: block;
   height: 100%;
@@ -22,14 +25,12 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 0 auto;
-  max-width: 1000px;
-  padding: 2em; }
+  max-width: 60rem;
+  padding: 2em;
+  height: 100vh; }
 
 .date--container {
-  -webkit-align-self: flex-end;
-      -ms-flex-item-align: end;
-          align-self: flex-end;
-  text-align: right; }
+  float: right; }
 
 .moment--container {
   -webkit-align-self: flex-start;
@@ -54,16 +55,19 @@ body {
       font-size: 4em; } }
   @media (min-width: 38rem) {
     .title, .moment--date, .sidebar--icon {
-      font-size: 6em; } }
+      font-size: 5.45em; } }
   @media (min-width: 47.5rem) {
+    .title, .moment--date, .sidebar--icon {
+      font-size: 7em; } }
+  @media (min-width: 60rem) {
     .title, .moment--date, .sidebar--icon {
       font-size: 8em; } }
 
 .moment--text, .sidebar--info {
   font-family: 'Roboto', sans-serif;
+  font-size: 1em;
   font-style: italic;
-  font-weight: 100;
-  font-size: 1em; }
+  font-weight: 100; }
   @media (min-width: 26rem) {
     .moment--text, .sidebar--info {
       font-size: 1.2em; } }
@@ -75,7 +79,10 @@ body {
   -webkit-align-self: flex-start;
       -ms-flex-item-align: start;
           align-self: flex-start;
-  margin: 0; }
+  margin: -.25em auto -.5em; }
+  @media (min-width: 26rem) {
+    .title {
+      margin: 0; } }
 
 .moment--text {
   background-color: #222;
@@ -86,7 +93,7 @@ body {
 .moment--date {
   display: inline-block;
   text-align: center;
-  width: 4em;
+  width: 3.6em;
   margin: 0; }
 
 .date--rand, .date--next, .date--prev {
@@ -94,18 +101,56 @@ body {
   background: url('../img/icons.svg');
   background-size: cover;
   border: none;
-  width: 4em;
-  height: 7em; }
+  width: 1.5em;
+  height: 3em; }
   .date--rand:hover, .date--next:hover, .date--prev:hover {
     cursor: pointer; }
+  @media (min-width: 26rem) {
+    .date--rand, .date--next, .date--prev {
+      width: 2em;
+      height: 4em; } }
+  @media (min-width: 38rem) {
+    .date--rand, .date--next, .date--prev {
+      width: 4em;
+      height: 6em; } }
+  @media (min-width: 47.5rem) {
+    .date--rand, .date--next, .date--prev {
+      width: 4em;
+      height: 7em; } }
 
 .date--rand {
-  background-position: -10px;
-  width: 8.43em; }
+  width: 4em; }
+  @media (min-width: 26rem) {
+    .date--rand {
+      width: 5.5em; } }
+  @media (min-width: 38rem) {
+    .date--rand {
+      width: 8.4em; } }
+  @media (min-width: 47.5rem) {
+    .date--rand {
+      width: 10em; } }
 .date--next {
-  background-position: 4.5em 0; }
+  background-position: 1.8em 0; }
+  @media (min-width: 26rem) {
+    .date--next {
+      background-position: 2.3em 0; } }
+  @media (min-width: 38rem) {
+    .date--next {
+      background-position: 4em 0; } }
+  @media (min-width: 47.5rem) {
+    .date--next {
+      background-position: 4.5em 0; } }
 .date--prev {
-  background-position: 10em 0; }
+  background-position: 4.3em 0; }
+  @media (min-width: 26rem) {
+    .date--prev {
+      background-position: 5.4em 0; } }
+  @media (min-width: 38rem) {
+    .date--prev {
+      background-position: 8em 0; } }
+  @media (min-width: 47.5rem) {
+    .date--prev {
+      background-position: 10em 0; } }
 
 .sidebar {
   -webkit-box-align: center;
@@ -135,11 +180,11 @@ body {
     .sidebar {
       margin-left: 3em; } }
   .sidebar:hover {
-    margin-left: 3.5em;
+    margin-left: 2em;
     top: 0; }
-  .sidebar[data-state='open'] {
-    left: 0;
-    margin-left: 0; }
+    @media (min-width: 26rem) {
+      .sidebar:hover {
+        margin-left: 3.5em; } }
   .sidebar--icon {
     background: none;
     border: 1px solid currentColor;
@@ -157,6 +202,9 @@ body {
       .sidebar--icon {
         font-size: 1.5em;
         margin-left: 1.5em; } }
+  .sidebar[data-state='open'] {
+    left: 0;
+    margin-left: 0; }
   .sidebar--info {
     max-width: 26em;
     line-height: 1.5;

@@ -3,28 +3,78 @@
   background: url('../img/icons.svg');
   background-size: cover;
   border: none;
-  width: 4em;
-  height: 7em;
+  width: 1.5em;
+  height: 3em;
 
   &:hover {
     cursor: pointer;
+  }
+
+  @include larger-than(small) {
+    width: 2em;
+    height: 4em;
+  }
+
+  @include larger-than(med) {
+    width: 4em;
+    height: 6em;
+  }
+
+  @include larger-than(large) {
+    width: 4em;
+    height: 7em;
   }
 }
 
 .date {
   &--rand {
     @extend %change-icons;
-    background-position: -10px;
-    width: 8.43em;
+    width: 4em;
+
+    @include larger-than(small) {
+      width: 5.5em;
+    }
+
+    @include larger-than(med) {
+      width: 8.4em;
+    }
+
+    @include larger-than(large) {
+      width: 10em;
+    }
   }
 
   &--next {
-    background-position: 4.5em 0;
     @extend %change-icons;
+    background-position: 1.8em 0;
+
+    @include larger-than(small) {
+      background-position: 2.3em 0;
+    }
+
+    @include larger-than(med) {
+      background-position: 4em 0;
+    }
+
+    @include larger-than(large) {
+      background-position: 4.5em 0;
+    }
   }
 
   &--prev {
-    background-position: 10em 0;
     @extend %change-icons;
+    background-position: 4.3em 0;
+
+    @include larger-than(small) {
+      background-position: 5.4em 0;
+    }
+
+    @include larger-than(med) {
+      background-position: 8em 0;
+    }
+
+    @include larger-than(large) {
+      background-position: 10em 0;
+    }
   }
 }

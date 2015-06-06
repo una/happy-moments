@@ -6,23 +6,30 @@
   @include larger-than(small) {
     font-size: 4em;
   }
+
   @include larger-than(med) {
-    font-size: 6em;
+    font-size: 5.45em;
   }
+
   @include larger-than(large) {
+    font-size: 7em;
+  }
+
+  @include larger-than(xl) {
     font-size: 8em;
   }
 }
 
 %font--copy {
   font-family: 'Roboto', sans-serif;
+  font-size: 1em;
   font-style: italic;
   font-weight: 100;
-  font-size: 1em;
 
   @include larger-than(small) {
     font-size: 1.2em;
   }
+
   @include larger-than(med) {
     font-size: 1.6em;
   }
@@ -31,7 +38,11 @@
 .title {
   @extend %font--title;
   align-self: flex-start;
-  margin: 0;
+  margin: -.25em auto -.5em;
+
+  @include larger-than(small) {
+    margin: 0;
+  }
 }
 
 .moment {
@@ -48,7 +59,7 @@
     @extend %font--title;
     display: inline-block;
     text-align: center;
-    width: 4em;
+    width: 3.6em;
     margin: 0;
   }
 }
