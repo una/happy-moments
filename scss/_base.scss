@@ -15,6 +15,7 @@ canvas {
   top: 0;
   width: 100%;
   z-index: -1;
+  height: 100vh;
 }
 
 body {
@@ -23,7 +24,7 @@ body {
   margin: 0 auto;
   max-width: grid-me(xl);
   padding: 2em;
-  height: 100vh;
+  overflow: hidden;
 }
 
 .date--container {

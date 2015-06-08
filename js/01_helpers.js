@@ -22,10 +22,3 @@ function formatDate(d) {
 function getHashNum(hash) {
     return hash.split('#')[1];
 }
-
-//polyfill for includes
-if (!String.prototype.includes) {
-  String.prototype.includes = function() {'use strict';
-    return String.prototype.indexOf.apply(this, arguments) !== -1;
-  };
-}
