@@ -1,5 +1,5 @@
 var request = new XMLHttpRequest();
-request.open('GET', '/json-list', true);
+request.open('GET', '/json-list');
 
 request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
