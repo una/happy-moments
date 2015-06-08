@@ -201,16 +201,18 @@ body {
     color: #caf;
     cursor: pointer;
     font-size: 1.5em;
+    margin: 0 .2em;
     position: absolute;
     opacity: .8;
     right: 0;
     top: 0;
     -webkit-transition-duration: .5s;
-            transition-duration: .5s; }
+            transition-duration: .5s;
+    padding: 0; }
     @media (min-width: 26rem) {
       .sidebar--icon {
         font-size: 2.5em;
-        margin-left: 1.5em; } }
+        margin-left: 1em 1.5em; } }
   .sidebar[data-state='open'] {
     left: 0;
     margin-left: 0; }
