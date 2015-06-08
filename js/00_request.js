@@ -10,6 +10,12 @@ request.onload = function() {
     window.onload = function() {
       console.log(window.location.href);
 
+      //polyfill for includes
+      String.prototype.includes = function() {'use strict';
+        console.log('ran includes script');
+        return String.prototype.indexOf.apply(this, arguments) !== -1;
+      };
+
       if (window.location.href.includes('#')) {
         console.log(getHashNum(window.location.href));
         updateMoments(getHashNum(window.location.href));

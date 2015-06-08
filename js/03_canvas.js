@@ -52,7 +52,7 @@ var sidebar = document.querySelector('.sidebar');
 
 sidebar.addEventListener('click', function(){
   if (sidebar.hasAttribute('data-state')) {
-    sidebar.removeAttribute('data-state')
+    sidebar.removeAttribute('data-state');
   } else {
     sidebar.setAttribute('data-state', 'open');
   }
