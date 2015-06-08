@@ -1,5 +1,5 @@
 var request = new XMLHttpRequest();
-request.open('GET', '/json-list');
+request.open('GET', '/json-list', true);
 
 request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
@@ -23,7 +23,7 @@ request.onload = function() {
 };
 
 request.onerror = function() {
-  console.log('connection error');
+  document.querySelector('.moment--text').innerHTML = 'connection error';
 };
 
 request.send();
