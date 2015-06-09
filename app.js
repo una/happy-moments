@@ -3,11 +3,11 @@
 var express = require('express');
 var app = express();
 var request = require('request');
+var fs = require('fs');
 var json, count, date, moment;
 
 app.use(express.static(__dirname + '/', { extensions: ['html'] }));
 app.use(express.static(__dirname + '/public'));
-
 
 // API Request
 app.get('/', function(req, res){
@@ -15,7 +15,15 @@ app.get('/', function(req, res){
 });
 
 app.get('/json-list', function(req, res){
-  request.get('https://www.kimonolabs.com/api/2mf3bjrq?apikey=txL7B070QkLk5HPTGs915wNTSQP7jqi6',
+  fs.readFile('./key.txt', 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+    var key = data;
+    console.log(key);
+  });
+
+  request.get('https://www.kimonolabs.com/api/2mf3bjrq?apikey='+ key,
   function(err, response, body) {
     json = JSON.parse(body);
     res.json(json);
