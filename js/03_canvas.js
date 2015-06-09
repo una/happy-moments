@@ -35,7 +35,7 @@ function getCanvasSize() {
   };
 }
 
-window.addEventListener("mousemove",function(e){
+window.addEventListener('mousemove',function(e){
   var s = getCanvasSize();
   var x = e.pageX - canvas.offsetLeft;
   var y = e.pageY - canvas.offsetTop;

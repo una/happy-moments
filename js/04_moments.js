@@ -35,13 +35,13 @@ function momentsFunction(data) {
     history.pushState(null, null, '#' + i);
   }
 
-  document.querySelector('.date--rand').addEventListener("click", function(e) {
+  document.querySelector('.date--rand').addEventListener('click', function(e) {
       randomMoment();
     });
-  document.querySelector('.date--next').addEventListener("click", function(e) {
+  document.querySelector('.date--next').addEventListener('click', function(e) {
       nextMoment();
     });
-  document.querySelector('.date--prev').addEventListener("click", function(e) {
+  document.querySelector('.date--prev').addEventListener('click', function(e) {
       prevMoment();
     });
 }
