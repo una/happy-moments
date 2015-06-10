@@ -33,8 +33,9 @@ app.get('/json-list', function(req, res){
 
 // sending every url that doesn't exist
 app.get('*', function(req, res){
-  res.send('404.html');
+  res.status(400).send('err404.html');
 });
+
 
 app.listen(process.env.PORT || 3000, function(){
   console.log('Express server listening on port %d in %s mode', this.address().port, app.settings.env);
