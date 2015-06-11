@@ -66,7 +66,7 @@ gulp.task('js', function() {
     .pipe(uglify())
     .pipe(size({ gzip: true, showFiles: true }))
     .pipe(concat('j.js'))
-    .pipe(wrap('(function(){\n"use strict";\n<%= contents %>\n})();'))
+    .pipe(wrap('(function(window, document){\n"use strict";\n<%= contents %>\n})(window, document);'))
     .pipe(gulp.dest('public/js'))
     .pipe(reload({stream:true}));
 });

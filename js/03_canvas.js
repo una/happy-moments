@@ -1,12 +1,22 @@
 // Canvas
-var canvas = document.getElementById('gradient');
-var context = canvas.getContext('2d');
-context.rect(0, 0, canvas.width, canvas.height);
+var canvas = document.getElementById('gradient'),
+    context = canvas.getContext('2d'),
 
-// starting color
-var bgc1 = 'rgb(142,214,255)';
-var bgc2 = 'rgb(244,214,255)';
-var grd = context.createLinearGradient(canvas.width, 0, canvas.width, canvas.height);
+    //mouse coords
+    mouseX = 0,
+    mouseY = 0,
+    s = getCanvasSize(), x, y,
+
+    // starting color
+    baseR = false,
+    baseG = false,
+    baseB = false,
+    bgc1 = 'rgb(' + (baseR || 142) + ',' + (baseG || 214) + ',' + (baseB || 255) + ')',
+    bgc2 = 'rgb(244,214,255)',
+    grd = context.createLinearGradient(canvas.width, 0, canvas.width, canvas.height);
+
+// building the rectangle
+context.rect(0, 0, canvas.width, canvas.height);
 
 function buildGrad() {
   grd = context.createLinearGradient(canvas.width, 0, canvas.width, canvas.height);
@@ -20,10 +30,6 @@ function buildGrad() {
 
 buildGrad();
 
-//mouse coords
-var mouseX = 0;
-var mouseY = 0;
-
 function getCanvasSize() {
   return {
     specifiedWidth : canvas.width,
@@ -36,9 +42,8 @@ function getCanvasSize() {
 }
 
 window.addEventListener('mousemove',function(e){
-  var s = getCanvasSize();
-  var x = e.pageX - canvas.offsetLeft;
-  var y = e.pageY - canvas.offsetTop;
+  x = e.pageX - canvas.offsetLeft;
+  y = e.pageY - canvas.offsetTop;
   mouseX = x*s.widthScale;
   mouseY = y*s.heightScale;
   bgc1 = 'rgb('+Math.floor(mouseY*2 + 60)+','+ Math.floor(mouseX/2 + 40) + ',' + Math.floor(mouseY*5 + 160) + ')';
