@@ -1,5 +1,5 @@
 // Google Fonts
-WebFontConfig = {
+var WebFontConfig = {
   google: { families: [ 'Roboto:100,300italic:latin' ] }
 };
 (function() {

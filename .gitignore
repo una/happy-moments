@@ -1,2 +1,5 @@
 node_modules/
-dist/
+public/
+.jshintrc
+key.txt
+npm-debug.log

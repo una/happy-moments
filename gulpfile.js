@@ -1,24 +1,23 @@
 'use strict';
 
-var gulp        = require('gulp'),
-    nodemon     = require('gulp-nodemon'),
-    sass        = require('gulp-sass'),
-    rename      = require('gulp-rename'),
-    cssmin      = require('gulp-minify-css'),
-    concat      = require('gulp-concat'),
-    uglify      = require('gulp-uglify'),
-    jshint      = require('gulp-jshint'),
-    prefix      = require('gulp-autoprefixer'),
-    browserSync = require('browser-sync'),
-    reload      = browserSync.reload,
-    minifyHTML  = require('gulp-minify-html'),
-    size        = require('gulp-size'),
-    imagemin    = require('gulp-imagemin'),
-    pngquant    = require('imagemin-pngquant'),
-    plumber     = require('gulp-plumber'),
-    notify      = require('gulp-notify'),
-    gulpLoadPlugins = require("gulp-load-plugins"),
-    plugins     = gulpLoadPlugins();
+var gulp            = require('gulp'),
+    nodemon         = require('gulp-nodemon'),
+    sass            = require('gulp-sass'),
+    rename          = require('gulp-rename'),
+    cssmin          = require('gulp-minify-css'),
+    concat          = require('gulp-concat'),
+    uglify          = require('gulp-uglify'),
+    jshint          = require('gulp-jshint'),
+    prefix          = require('gulp-autoprefixer'),
+    browserSync     = require('browser-sync'),
+    reload          = browserSync.reload,
+    minifyHTML      = require('gulp-minify-html'),
+    size            = require('gulp-size'),
+    imagemin        = require('gulp-imagemin'),
+    pngquant        = require('imagemin-pngquant'),
+    plumber         = require('gulp-plumber'),
+    notify          = require('gulp-notify'),
+    wrap            = require("gulp-wrap");
 
 gulp.task('scss', function() {
   var onError = function(err) {
@@ -67,6 +66,7 @@ gulp.task('js', function() {
     .pipe(uglify())
     .pipe(size({ gzip: true, showFiles: true }))
     .pipe(concat('j.js'))
+    .pipe(wrap('(function(window, document){\n"use strict";\n<%= contents %>\n})(window, document);'))
     .pipe(gulp.dest('public/js'))
     .pipe(reload({stream:true}));
 });
