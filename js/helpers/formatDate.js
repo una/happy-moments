@@ -1,5 +1,4 @@
-// Date Formatting
-function formatDate(d) {
+module.exports = function(d) {
   var months = {
     '01' : 'Jan',
     '02' : 'Feb',
@@ -17,8 +16,4 @@ function formatDate(d) {
   var dateNum = d.slice(3,5);
 
   return (months[monthNum] + ' ' + dateNum);
-}
-
-function getHashNum(hash) {
-    return hash.split('#')[1];
-}
+};

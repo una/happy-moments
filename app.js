@@ -9,24 +9,18 @@ var json, key, count, date, moment;
 
 app.set('view engine', 'jade');
 
-//API Key
-fs.readFile('./key.txt', 'utf8', function (err,data) {
-  if (err) {
-    return console.log(err);
-  }
-  key = data;
-});
+if (process.env.NODE_ENV === 'production') {
+  key = process.env.KIMONO_KEY;
+} else {
+  key = fs.readFileSync('./key.txt', 'utf8');
+}
 
 app.use(express.static(__dirname + '/public', { extensions: ['html'] }));
 app.use(express.static(__dirname + '/public'));
 
-// app.get('/', function(req, res){
-//   res.send('index.html');
-// });
-
 // creating json list asset
 app.get('/json-list', function(req, res){
-  request.get('https://www.kimonolabs.com/api/2mf3bjrq?apikey='+ process.env.KIMONO_KEY,
+  request.get('https://www.kimonolabs.com/api/2mf3bjrq?apikey=' + key,
   function(err, response, body) {
     json = JSON.parse(body);
     res.json(json);
@@ -37,7 +31,6 @@ app.get('/json-list', function(req, res){
 app.use(function(req,res){
   res.sendFile(path.resolve(__dirname, 'public/404.html'));
 });
-
 
 app.listen(process.env.PORT || 3000, function(){
   console.log('Express server listening on port %d in %s mode', this.address().port, app.settings.env);

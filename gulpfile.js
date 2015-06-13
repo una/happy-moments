@@ -5,8 +5,6 @@ var gulp            = require('gulp'),
     sass            = require('gulp-sass'),
     rename          = require('gulp-rename'),
     cssmin          = require('gulp-minify-css'),
-    concat          = require('gulp-concat'),
-    uglify          = require('gulp-uglify'),
     jshint          = require('gulp-jshint'),
     prefix          = require('gulp-autoprefixer'),
     browserSync     = require('browser-sync'),
@@ -17,7 +15,7 @@ var gulp            = require('gulp'),
     pngquant        = require('imagemin-pngquant'),
     plumber         = require('gulp-plumber'),
     notify          = require('gulp-notify'),
-    wrap            = require("gulp-wrap");
+    webpack         = require('webpack');
 
 gulp.task('scss', function() {
   var onError = function(err) {
@@ -61,16 +59,6 @@ gulp.task('nodemon', function () {
   });
 });
 
-gulp.task('js', function() {
-  gulp.src('js/*.js')
-    .pipe(uglify())
-    .pipe(size({ gzip: true, showFiles: true }))
-    .pipe(concat('j.js'))
-    .pipe(wrap('(function(window, document){\n"use strict";\n<%= contents %>\n})(window, document);'))
-    .pipe(gulp.dest('public/js'))
-    .pipe(reload({stream:true}));
-});
-
 gulp.task('minify-html', function() {
     var opts = {
       comments:true,
@@ -91,7 +79,7 @@ gulp.task('jshint', function() {
 
 gulp.task('watch', function() {
   gulp.watch('scss/**/*.scss', ['scss']);
-  gulp.watch('js/*.js', ['jshint', 'js']);
+  gulp.watch('js/*.js', ['jshint', 'webpack']);
   gulp.watch('./*.html', ['minify-html']);
   gulp.watch('img/*', ['imgmin']);
 });
@@ -106,6 +94,29 @@ gulp.task('imgmin', function () {
       .pipe(gulp.dest('public/img'));
 });
 
-gulp.task('build', ['js', 'imgmin', 'minify-html', 'scss']);
+// webpack build:
+gulp.task('webpack', function() {
+  webpack({
+    entry: './js/main.js',
+    output: {
+      path: __dirname + '/public/js',
+      filename: 'j.js'
+    },
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+          compress: {
+              warnings: false
+          }
+      })
+    ]
+  }, function(err) {
+      if(err) {
+        console.log(err);
+      }
+      reload({stream:true});
+  });
+});
 
-gulp.task('default', ['browser-sync', 'js', 'imgmin', 'minify-html', 'scss', 'watch']);
+gulp.task('build', ['webpack', 'imgmin', 'minify-html', 'scss']);
+
+gulp.task('default', ['browser-sync', 'webpack', 'imgmin', 'minify-html', 'scss', 'watch']);

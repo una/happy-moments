@@ -1,10 +1,13 @@
+var formatDate = require('./helpers/formatDate');
+var getHashNum = require('./helpers/getHashNum');
+
 // using list from API call
-function momentsFunction(data) {
+module.exports = function(data) {
   var allMoments, count, date, moment, i;
   allMoments = data;
   count = allMoments.count;
 
-  if (window.location.href.includes('#')) {
+  if (getHashNum(window.location.href)) {
     console.log(getHashNum(window.location.href));
     i = getHashNum(window.location.href);
     updateMoments(i);
@@ -38,10 +41,12 @@ function momentsFunction(data) {
   document.querySelector('.date--rand').addEventListener('click', function(e) {
       randomMoment();
     });
+
   document.querySelector('.date--next').addEventListener('click', function(e) {
       nextMoment();
     });
+
   document.querySelector('.date--prev').addEventListener('click', function(e) {
       prevMoment();
     });
-}
+};
