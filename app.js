@@ -6,8 +6,9 @@ var request = require('request');
 var fs = require('fs');
 var path = require('path');
 var json, key, count, date, moment;
+var env = process.env.NODE_ENV || "development"
 
-if (process.env.NODE_ENV === 'production') {
+if (env === 'production') {
   key = process.env.KIMONO_KEY;
 } else {
   key = fs.readFileSync('./key.txt', 'utf8');
@@ -15,10 +16,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.static(__dirname + '/public', { extensions: ['html'] }));
 app.use(express.static(__dirname + '/public'));
-
-app.get('/', function(req, res){
-  res.send('index.html');
-});
 
 // creating json list asset
 app.get('/json-list', function(req, res){

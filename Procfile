@@ -1,1 +1,1 @@
-web: gulp build && node app.js
+web: gulp build && NODE_ENV=production node app.js
