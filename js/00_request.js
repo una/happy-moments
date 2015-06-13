@@ -9,13 +9,8 @@ request.onload = function() {
     // if this is a link to a moment, load that first
     window.onload = function() {
 
-      //polyfill for includes
-      String.prototype.includes = function() {'use strict';
-        return String.prototype.indexOf.apply(this, arguments) !== -1;
-      };
-
       //send specific moment link
-      if (window.location.href.includes('#')) {
+      if (getHashNum(window.location.href)) {
         updateMoments(getHashNum(window.location.href));
         return;
       }

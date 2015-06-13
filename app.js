@@ -4,7 +4,10 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var fs = require('fs');
+var path = require('path');
 var json, key, count, date, moment;
+
+app.set('view engine', 'jade');
 
 //API Key
 fs.readFile('./key.txt', 'utf8', function (err,data) {
@@ -14,13 +17,12 @@ fs.readFile('./key.txt', 'utf8', function (err,data) {
   key = data;
 });
 
-app.use(express.static(__dirname + '/', { extensions: ['html'] }));
+app.use(express.static(__dirname + '/public', { extensions: ['html'] }));
 app.use(express.static(__dirname + '/public'));
 
-// API Request
-app.get('/', function(req, res){
-  res.send('index.html');
-});
+// app.get('/', function(req, res){
+//   res.send('index.html');
+// });
 
 // creating json list asset
 app.get('/json-list', function(req, res){
@@ -31,9 +33,9 @@ app.get('/json-list', function(req, res){
   });
 });
 
-// sending every url that doesn't exist
-app.get('*', function(req, res){
-  res.status(400).send('err404.html');
+// 404s!
+app.use(function(req,res){
+  res.sendFile(path.resolve(__dirname, 'public/404.html'));
 });
 
 
