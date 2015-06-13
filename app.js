@@ -26,7 +26,7 @@ app.use(express.static(__dirname + '/public'));
 
 // creating json list asset
 app.get('/json-list', function(req, res){
-  request.get('https://www.kimonolabs.com/api/2mf3bjrq?apikey='+ key,
+  request.get('https://www.kimonolabs.com/api/2mf3bjrq?apikey='+ process.env.KIMONO_KEY,
   function(err, response, body) {
     json = JSON.parse(body);
     res.json(json);
