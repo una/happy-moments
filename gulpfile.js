@@ -106,4 +106,6 @@ gulp.task('imgmin', function () {
       .pipe(gulp.dest('public/img'));
 });
 
+gulp.task('build', ['js', 'imgmin', 'minify-html', 'scss']);
+
 gulp.task('default', ['browser-sync', 'js', 'imgmin', 'minify-html', 'scss', 'watch']);
