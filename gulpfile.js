@@ -15,7 +15,8 @@ var gulp            = require('gulp'),
     pngquant        = require('imagemin-pngquant'),
     plumber         = require('gulp-plumber'),
     notify          = require('gulp-notify'),
-    webpack         = require('webpack');
+    webpack         = require('webpack'),
+    webpackStream   = require('webpack-stream');
 
 gulp.task('scss', function() {
   var onError = function(err) {
@@ -94,29 +95,39 @@ gulp.task('imgmin', function () {
       .pipe(gulp.dest('public/img'));
 });
 
-// webpack build:
-gulp.task('webpack', function() {
-  webpack({
-    entry: './js/main.js',
-    output: {
-      path: __dirname + '/public/js',
-      filename: 'j.js'
-    },
-    plugins: [
-      new webpack.optimize.UglifyJsPlugin({
+// wrapper for JS build, supporting both
+// minified and unminified versions
+function jsBuild(minify) {
+  return gulp.src('js/main.js')
+    .pipe(webpackStream({
+      entry : {
+        j : './js/main.js'
+      },
+      output: {
+        filename: '[name].js'
+      },
+      plugins: minify ? [
+        new webpack.optimize.UglifyJsPlugin({
           compress: {
-              warnings: false
+            warnings: false
           }
-      })
-    ]
-  }, function(err) {
-      if(err) {
-        console.log(err);
-      }
-      reload({stream:true});
-  });
+        })
+      ] : []
+    }, webpack))
+    .pipe(gulp.dest('public/js'))
+    .pipe(reload({ stream : true }));
+}
+
+// webpack build
+gulp.task('webpack', function() {
+  jsBuild(true);
+});
+
+// webpack build, but unminified
+gulp.task('webpack-dev', function() {
+  jsBuild(false);
 });
 
 gulp.task('build', ['webpack', 'imgmin', 'minify-html', 'scss']);
 
-gulp.task('default', ['browser-sync', 'webpack', 'imgmin', 'minify-html', 'scss', 'watch']);
+gulp.task('default', ['browser-sync', 'webpack-dev', 'imgmin', 'minify-html', 'scss', 'watch']);
