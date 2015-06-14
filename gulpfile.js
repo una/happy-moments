@@ -97,7 +97,7 @@ gulp.task('imgmin', function () {
 
 // wrapper for JS build, supporting both
 // minified and unminified versions
-function jsBuild(minify) {
+function jsBuild(isProduction) {
   return gulp.src('js/main.js')
     .pipe(webpackStream({
       entry : {
@@ -106,13 +106,14 @@ function jsBuild(minify) {
       output: {
         filename: '[name].js'
       },
-      plugins: minify ? [
+      plugins: isProduction ? [
         new webpack.optimize.UglifyJsPlugin({
           compress: {
             warnings: false
           }
         })
-      ] : []
+      ] : [],
+      pathinfo: !isProduction
     }, webpack))
     .pipe(gulp.dest('public/js'))
     .pipe(reload({ stream : true }));
