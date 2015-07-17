@@ -1,9 +1,8 @@
-// var keyChar = require('./helpers/getKey');
-var momentChanger = require('./moments.js');
-
-module.exports = function() {
+// expects an instance of momentChanger from moments.js
+module.exports = function(momentChanger) {
   'use strict';
   var unicode;
+  console.log(momentChanger.randomMoment());
 
   document.onkeydown = function(e) {
     e.preventDefault();
@@ -12,17 +11,17 @@ module.exports = function() {
 
     if(unicode === 32) {
       console.log('space');
-      momentChanger.randomMoment(e);
+      momentChanger.randomMoment();
     }
 
     if(unicode === 39) {
       console.log('rarr');
-      momentChanger.nextMoment(e);
+      momentChanger.nextMoment();
     }
 
     if(unicode === 37) {
       console.log('larr');
-      momentChanger.prevMoment(e);
+      momentChanger.prevMoment();
     }
   };
 };
