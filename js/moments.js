@@ -8,7 +8,7 @@ module.exports = function(data) {
   count = allMoments.count;
 
   if (getHashNum(window.location.href)) {
-    console.log(getHashNum(window.location.href));
+    // console.log(getHashNum(window.location.href));
     i = getHashNum(window.location.href);
     updateMoments(i);
   } else {

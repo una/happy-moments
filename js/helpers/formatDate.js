@@ -1,4 +1,5 @@
 module.exports = function(d) {
+  'use strict';
   var months = {
     '01' : 'Jan',
     '02' : 'Feb',
