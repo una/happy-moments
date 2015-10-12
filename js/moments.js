@@ -3,7 +3,7 @@ var getHashNum = require('./helpers/getHashNum');
 
 // using list from API call
 module.exports = function(data) {
-  'use strict';
+
   var allMoments, count, date, moment, i;
   allMoments = data;
   count = allMoments.count;
@@ -25,7 +25,6 @@ module.exports = function(data) {
 
   if (getHashNum(window.location.href)) {
     i = getHashNum(window.location.href);
-    console.log(getHashNum(window.location.href));
     updateMoments(i);
   } else {
     randomMoment();
