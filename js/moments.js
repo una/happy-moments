@@ -31,7 +31,7 @@ module.exports = function(data) {
   }
 
   function updateMoments(i) {
-    date = allMoments.results.happyMoments[i].date.text;
+    date = allMoments.results.happyMoments[i].date;
     moment = allMoments.results.happyMoments[i].moment;
     document.querySelector('.moment--text').innerHTML = moment;
     document.querySelector('.moment--date').innerHTML = formatDate(date);
