@@ -27,7 +27,7 @@ module.exports = function(data) {
     i = getHashNum(window.location.href);
     updateMoments(i);
   } else {
-    randomMoment();
+    randomMoment()
   }
 
   function updateMoments(i) {
