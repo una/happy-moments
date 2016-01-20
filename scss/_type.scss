@@ -67,3 +67,14 @@
     margin: 0;
   }
 }
+
+.year {
+  font-size: 40vw;
+  position: absolute;
+  mix-blend-mode: multiply;
+  color: #f0f69b;
+  top: -0.5em;
+  right: -.085em;
+  font-family: 'Roboto', sans-serif;
+  line-height: 0;
+}
